@@ -2,9 +2,6 @@
 Just got a study
 # Generative Codex
 
-An Inquiry into a Unified Programming Paradigm
-
----
 
 ## Axiom 1: Idempotency in Distributed Systems
 
