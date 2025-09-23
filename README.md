@@ -53,7 +53,6 @@ function ExecuteOperationAndStoreResult(idempotency_key, request_payload):
     IdempotencyStore.Update(idempotency_key, { status: "FAILED", error: e.message })
     throw e // Re-throw the exception after recording failure
 ```
-```
 
 ### Key Research Question
 
@@ -126,7 +125,7 @@ SYSTEM DistributedDataStore {
   }
 }
 ```
-```
+
 
 ### Key Research Question
 
@@ -239,7 +238,7 @@ function ExecuteCompensatingTransactions(saga_id, completed_steps):
     call step_to_compensate.service.step_to_compensate.compensate(saga_id, initial_data) // Execute compensating transaction
   Log("Saga compensation complete for saga:", saga_id)
 ```
-```
+
 
 ### Key Research Question
 
@@ -255,7 +254,7 @@ Two-Phase Commit (2PC) and Compensation represent two fundamental, yet distinct,
 
 ### Abstract Implementation
 
-```
+
 ```
 // Two-Phase Commit (2PC) Protocol
 Coordinator {
@@ -332,7 +331,7 @@ Step {
   }
 }
 ```
-```
+
 
 ### Key Research Question
 
@@ -400,7 +399,7 @@ Gossip protocols for state dissemination define a decentralized, probabilistic c
 
 ### Abstract Implementation
 
-```
+
 ```
 Entity Node {
     LocalState: Map<Key, Value, VersionTimestamp> // Represents the node's current understanding of system state
@@ -428,7 +427,7 @@ Entity Node {
             Send(SenderID, LocalState.GetDeltaOrDigest())
 }
 ```
-```
+
 
 ### Key Research Question
 
@@ -585,7 +584,7 @@ function increment_counter():
     // If no conflict, changes are committed atomically.
   } // End of atomic block
 ```
-```
+
 
 ### Key Research Question
 
@@ -639,7 +638,6 @@ function perform_lock_free_update(UpdateArguments args) {
     // The 'current_state_snapshot' (the old state) might need to be safely reclaimed
     // using techniques like hazard pointers or RCU to prevent use-after-free issues.
 }
-```
 ```
 
 ### Key Research Question
@@ -697,7 +695,6 @@ UnmapMemory(MEMORY_POINTER, LENGTH_TO_MAP)
 "Zero-Copy Data Transfer" defines a fundamental optimization strategy wherein data is moved between distinct memory domains (e.g., user-space to kernel-space, or between processes) without the creation of redundant intermediate copies. This paradigm leverages mechanisms such as memory-mapping, shared memory segments, or direct memory access (DMA) to enable data consumers to directly reference or access the original data buffer. Its theoretical underpinning lies in minimizing CPU cycles spent on `memcpy` operations, reducing memory bandwidth consumption, and enhancing cache coherency by preventing unnecessary cache line invalidations and reloads. This axiom is critical for achieving maximal throughput and minimal latency in high-performance I/O, network stacks, and inter-process communication within data-intensive and real-time computing systems.
 
 ### Abstract Implementation
-
 ```
 ```pseudocode
 // Conceptual Zero-Copy Data Transfer Flow
@@ -721,7 +718,7 @@ function receive_and_process_data() {
   release_handle(received_handle); // Signal region can be released/reused.
 }
 ```
-```
+
 
 ### Key Research Question
 
@@ -1132,7 +1129,7 @@ CLASS CircuitBreaker:
       currentState = OPEN // Re-trip immediately on failure in half-open
       lastFailureTimestamp = currentTimeMillis()
 ```
-```
+
 
 ### Key Research Question
 
@@ -1198,7 +1195,7 @@ The Declarative and Imperative Programming Paradigms represent two foundational 
 
 ### Abstract Implementation
 
-```
+
 **Imperative Style (Explicit State Mutation & Control Flow):**
 
 ```
@@ -1220,7 +1217,7 @@ function calculate_processed_sum_declarative(data_collection):
         .map(element => element.value * 2)      // Describe *what* transformation to apply
         .reduce((sum, value) => sum + value, 0) // Describe *what* aggregation to perform
 ```
-```
+
 
 ### Key Research Question
 
@@ -1500,7 +1497,6 @@ ServiceLocator.register("LoggerService", new ConsoleLogger()); // Dependency reg
 const slReportGen = new ReportGeneratorSL(); // Component created without explicit dependency
 slReportGen.generateReport("InventoryData");
 ```
-```
 
 ### Key Research Question
 
@@ -1515,8 +1511,8 @@ slReportGen.generateReport("InventoryData");
 The SOLID Principles constitute a foundational set of five object-oriented design heuristics: Single Responsibility Principle (SRP), Open/Closed Principle (OCP), Liskov Substitution Principle (LSP), Interface Segregation Principle (ISP), and Dependency Inversion Principle (DIP). These principles are theoretically grounded in the pursuit of managing software complexity by fostering designs characterized by high cohesion and loose coupling. Their collective application aims to produce systems that are inherently more understandable, flexible, and resilient to change, thereby reducing technical debt and enhancing maintainability over their lifecycle. Within a unified programming paradigm, SOLID principles serve as critical architectural guidelines, ensuring that discrete components possess well-defined responsibilities, can be extended without internal modification, maintain behavioral consistency upon substitution, expose minimal necessary interfaces, and rely on abstract contracts rather than concrete implementations. This structured approach is vital for constructing adaptable, robust, and collaborative software ecosystems capable of evolving gracefully.
 
 ### Abstract Implementation
-
 ```
+
 ```pseudocode
 // 1. Single Responsibility Principle (SRP): Each interface/class has one reason to change.
 // 4. Interface Segregation Principle (ISP): Clients should not be forced to depend on interfaces they do not use.
@@ -1598,7 +1594,6 @@ let anotherReportService = new ReportProcessingService(csvFormatter, printSender
 
 anotherReportService.processAndDeliver(new ReportData("Daily Inventory"), "Warehouse Printer");
 ```
-```
 
 ### Key Research Question
 
@@ -1615,7 +1610,7 @@ The Decorator and Proxy design patterns, both classified as structural patterns 
 ### Abstract Implementation
 
 ```
-```
+
 interface Component {
     method operation();
 }
@@ -1679,7 +1674,6 @@ class ConcreteProxyB extends AbstractProxy {
     }
 }
 ```
-```
 
 ### Key Research Question
 
@@ -1695,7 +1689,7 @@ Hexagonal Architecture, also known as Ports and Adapters, is a software architec
 
 ### Abstract Implementation
 
-```
+
 ```
 // Application Core (The Hexagon)
 // Defines the application's capabilities and its needs from external systems.
@@ -1783,7 +1777,7 @@ class DatabaseAdapter implements DataStoragePort_ManageEntities { // Implements 
 // Simulate an incoming request
 // restAdapter.handleHttpRequest(new HttpRequest());
 ```
-```
+
 
 ### Key Research Question
 
@@ -1862,7 +1856,6 @@ class SqlUserRepository implements IUserRepository { // Implements interface fro
 // The key principle demonstrated is that outer layers depend on inner layers, but inner layers are independent of outer layers.
 // This is achieved by inner layers defining interfaces (ports) that outer layers implement (adapters).
 ```
-```
 
 ### Key Research Question
 
@@ -1879,7 +1872,7 @@ Bounded Contexts, a foundational axiom within Domain-Driven Design (DDD), define
 ### Abstract Implementation
 
 ```
-```
+
 // System-wide view of a complex business domain (e.g., E-commerce)
 
 UnifiedSystem {
